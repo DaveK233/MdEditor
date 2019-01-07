@@ -14,7 +14,7 @@ import java.awt.event.MouseAdapter;
 
 public class MdEditor extends MouseAdapter implements ActionListener, DocumentListener, TreeSelectionListener {
     private Parser mParser = new Parser();
-    private HtmlConvertor mHtmlcvt;
+    private HtmlConvertor mHtmlcvt = new HtmlConvertor();
     private JFrame mFrame;
     private JEditorPane mEditorPane;
     private JTextArea mTextArea;
@@ -22,9 +22,8 @@ public class MdEditor extends MouseAdapter implements ActionListener, DocumentLi
     private String mHTML = "";
     private String mCSS = "";
 
-
-
     public MdEditor() {
+
     }
 
 

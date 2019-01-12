@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: com.lowagie.text-2.1.7.jar commons-io-2.2.jar commons-logg
+ ing-1.1.2.jar docx4j-3.2.2.jar docx4j-ImportXHTML-3.2.2.jar guava-20.
+ 0.jar jsoup-1.10.1.jar markdown4j-2.2.jar pegdown-1.6.0.jar slf4j-api
+ -1.7.21.jar slf4j-simple-1.7.21.jar xhtmlrenderer-3.0.0.jar xmlgraphi
+ cs-commons-2.0.1.jar
+Main-Class: userInterface.MdEditor
+

@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Markdown-Editor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Markdown_Editor_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Markdown-Editor.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="Markdown-Editor" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/com.lowagie.text-2.1.7.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/commons-io-2.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/commons-logging-1.1.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/docx4j-3.2.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/docx4j-ImportXHTML-3.2.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/guava-20.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/jsoup-1.10.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/markdown4j-2.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/pegdown-1.6.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/slf4j-api-1.7.21.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/slf4j-simple-1.7.21.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/xhtmlrenderer-3.0.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../JHW4C/CSCW-MarkDown/MarkdownEditor/src/lib/xmlgraphics-commons-2.0.1.jar" />
+    </root>
+  </artifact>
+</component>

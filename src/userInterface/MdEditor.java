@@ -23,13 +23,13 @@ public class MdEditor extends MouseAdapter implements ActionListener, DocumentLi
 
     // define global varieties
     private Translator mTranslator = new Translator();
-    private HtmlConvertor mHtmlcvt = new HtmlConvertor();
+//    private HtmlConvertor mHtmlcvt = new HtmlConvertor();
     private JFrame mFrame;
     private JEditorPane mEditorPane;
     private JTextArea mTextArea;
     private StyleSheet mStyleSheet;
     private boolean mChanged = true, mMaster;
-    private Font mMenuFont = new Font("Microsoft YaHei", Font.PLAIN, 15);
+    private Font mMenuFont = new Font("SimHei", Font.PLAIN, 15);
     private String mText = new String();
     private String mHTML = new String();
     private String mCSS = new String();
@@ -200,43 +200,39 @@ public class MdEditor extends MouseAdapter implements ActionListener, DocumentLi
         mFrame.setJMenuBar(mMenuBar);
 
         // file menu
-        {
-            mFileMenu = new JMenu("文件");
-            mFileMenu.setFont(mMenuFont);
-            mMenuBar.add(mFileMenu);
+        mFileMenu = new JMenu("文件");
+        mFileMenu.setFont(mMenuFont);
+        mMenuBar.add(mFileMenu);
 
-            mOpenItem = new JMenuItem("打开");
-            mOpenItem.setFont(mMenuFont);
-            mFileMenu.add(mOpenItem);
-            mOpenItem.addActionListener(this);
+        mOpenItem = new JMenuItem("打开");
+        mOpenItem.setFont(mMenuFont);
+        mFileMenu.add(mOpenItem);
+        mOpenItem.addActionListener(this);
 
-            mSaveItem = new JMenuItem("保存");
-            mSaveItem.setFont(mMenuFont);
-            mFileMenu.add(mSaveItem);
-            mSaveItem.addActionListener(this);
+        mSaveItem = new JMenuItem("保存");
+        mSaveItem.setFont(mMenuFont);
+        mFileMenu.add(mSaveItem);
+        mSaveItem.addActionListener(this);
 
-            mExportHTMLItem = new JMenuItem("导出HTML");
-            mExportHTMLItem.setFont(mMenuFont);
-            mFileMenu.add(mExportHTMLItem);
-            mExportHTMLItem.addActionListener(this);
+        mExportHTMLItem = new JMenuItem("导出HTML");
+        mExportHTMLItem.setFont(mMenuFont);
+        mFileMenu.add(mExportHTMLItem);
+        mExportHTMLItem.addActionListener(this);
 
 //            mExportPdfItem = new JMenuItem("导出pdf");
 //            mExportPdfItem.setFont(mMenuFont);
 //            mFileMenu.add(mExportPdfItem);
 //            mExportPdfItem.addActionListener(this);
-        }
 
         // log in or register on server
-        {
-            mClientMenu = new JMenu("登录/新建账户");
-            mClientMenu.setFont(mMenuFont);
-            mMenuBar.add(mClientMenu);
+        mClientMenu = new JMenu("登录/新建账户");
+        mClientMenu.setFont(mMenuFont);
+        mMenuBar.add(mClientMenu);
 
-            mLoginItem = new JMenuItem("登录/新建账户");
-            mLoginItem.setFont(mMenuFont);
-            mClientMenu.add(mLoginItem);
-            mLoginItem.addActionListener(this);
-        }
+        mLoginItem = new JMenuItem("登录/新建账户");
+        mLoginItem.setFont(mMenuFont);
+        mClientMenu.add(mLoginItem);
+        mLoginItem.addActionListener(this);
     }
 
     public void showEditor() {

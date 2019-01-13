@@ -13,13 +13,13 @@ import java.util.HashMap;
 
 public class Server {
 
-    private static final int SERVER_PORT = 3872;
-    private static final int ROOM_SERVER_PORT = 8080;
+    private static final int SERVER_PORT = 8081;
+    private static final int ROOM_SERVER_PORT = 8082;
     private static final int MAX_ROOM_NUMBER = 20;
     private int Count = 1000;   // number of virtual IP
 
-    private ServerSocket mServerLocal;
-    private ServerSocket mServerOther;
+    private ServerSocket mServerLocal = null;
+    private ServerSocket mServerOther = null;
 
     private HashMap<String, Client> mClients = new HashMap<>();
 
@@ -65,17 +65,17 @@ public class Server {
                     if (type == FunType.DISCONNECT) {
                         exit = true;
                     } else if (type == FunType.LOGIN) {
-                        disposeLogin(s[1], s[2]);
+                        sendLogin(s[1], s[2]);
                     } else if (type == FunType.REGISTER) {
-                        disposeRegister(s[1], s[2]);
+                        sendRegister(s[1], s[2]);
                     } else if (type == FunType.CREATE) {
-                        disposeCreateRoom();
+                        sendCreateRoom();
                     } else if (type == FunType.JOIN) {
-                        disposeJoinRoom(s[1]);
+                        sendJoinRoom(s[1]);
                     } else if (type == FunType.CONNECT) {
-                        disposeConnectRoom(s[1], mSocket);
+                        sendConnectRoom(s[1], mSocket);
                     } else if (type == FunType.SEND_REFRESH) {
-                        disposeUpdate(Utility.parseFullString(mBufferedReader),
+                        sendUpdate(Utility.parseFullString(mBufferedReader),
                                 Integer.parseInt(s[1]));
                     }
                 }
@@ -92,16 +92,14 @@ public class Server {
             }
         }
 
-        private void disposeLogin(String name, String password) throws Exception {
-            /*从数据库查找*/
-            /*这里简化，用内存中的map*/
+        private void sendLogin(String name, String password) throws Exception {
 
             String pwd = mPasswords.get(name);
             if(pwd == null) {
                 mPrintWriter.println("用户不存在！");
             }
             else if(pwd.equals(password)) {
-                //返回成功，并分配一个虚拟ip
+
                 int ip = Count++;
                 mPrintWriter.println(Onlined.SUCCESS + "&" + ip);
                 mClient.setIP(Integer.toString(ip));
@@ -115,7 +113,7 @@ public class Server {
             }
         }
         
-        private void disposeRegister(String name, String password) throws Exception {
+        private void sendRegister(String name, String password) throws Exception {
             if(mPasswords.get(name) != null) {
                 mPrintWriter.println("用户已存在！");
             }
@@ -131,13 +129,12 @@ public class Server {
             }
         }
         
-        private void disposeCreateRoom() throws Exception {
+        private void sendCreateRoom() throws Exception {
             if(mBoards.size() == MAX_ROOM_NUMBER) {
-                mPrintWriter.println("很抱歉！服务器较拥挤，不能创建房间！");
+                mPrintWriter.println("服务器已达容量上限！");
             }
             else {
                 int id = 0;
-                //找到第一个空的位置，分配一个房间id
                 for( ; id < MAX_ROOM_NUMBER; id++) {
                     if(mBoards.get(id) == null)
                         break;
@@ -152,7 +149,7 @@ public class Server {
             }
         }
         
-        private void disposeJoinRoom(String idString) throws Exception {
+        private void sendJoinRoom(String idString) throws Exception {
             int id;
             try {
                 id = Integer.parseInt(idString);
@@ -173,14 +170,14 @@ public class Server {
         }
 
 
-        synchronized private void disposeConnectRoom(String name, Socket socket) throws Exception {
+        synchronized private void sendConnectRoom(String name, Socket socket) throws Exception {
             Client client = mClients.get(name);
             client.setSocketRefresh(socket);
 
             client.getPrintWriterRefresh().println(Onlined.SUCCESS + "&");
         }
         
-        private void disposeUpdate(String updation, int boardID) throws Exception {
+        private void sendUpdate(String updation, int boardID) throws Exception {
             Board board = mBoards.get(boardID);
 
             board.updateAllMember(updation);
@@ -198,7 +195,7 @@ public class Server {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Utility.error("协同服务器创建失败！");
+//                Utility.error("协同服务器创建失败！");
             }
 
             try {
@@ -211,7 +208,7 @@ public class Server {
                 }
             } catch(Exception e) {
                 e.printStackTrace();
-                Utility.error("网络错误：连接超时！");
+//                Utility.error("网络错误：连接超时！");
             }
         }).start();
 
@@ -221,7 +218,7 @@ public class Server {
 
             } catch(IOException e) {
                 e.printStackTrace();
-                Utility.error("协作白板创建失败！");
+//                Utility.error("协作白板创建失败！");
             }
 
             try {
@@ -234,7 +231,7 @@ public class Server {
                 }
             } catch(Exception e) {
                 e.printStackTrace();
-                Utility.error("网络错误：连接超时！");
+//                Utility.error("网络错误：连接超时！");
             }
         }).start();
     }

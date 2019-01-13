@@ -15,10 +15,10 @@ public class Login extends JFrame implements ActionListener {
     JButton login = new JButton("登录");
     JButton register = new JButton("注册");
     JLabel  name = new JLabel("用户名：");
-    private Font mFont = new Font("Microsoft YaHei", Font.PLAIN, 15);
+    private Font mFont = new Font("SimHei", Font.PLAIN, 15);
     JLabel password = new JLabel("密码：");
-    JTextField JName = new JTextField(10);
-    JPasswordField JPassword = new JPasswordField(10);
+    JTextField nameIn = new JTextField(10);
+    JPasswordField passwordIn = new JPasswordField(10);
 
     private Client mClient = null;
     private MdEditor mEditor;
@@ -35,31 +35,33 @@ public class Login extends JFrame implements ActionListener {
         register.setFont(mFont);
         name.setFont(mFont);
         password.setFont(mFont);
-        JName.setFont(mFont);
-        JPassword.setFont(mFont);
+        nameIn.setFont(mFont);
+        passwordIn.setFont(mFont);
 
-        JPanel mPanel = new JPanel();
-        GridLayout mLayout = new GridLayout(3,2);
-        mPanel.setLayout(mLayout);
+        JPanel inputPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
 
-        name.setHorizontalAlignment(SwingConstants.RIGHT);
-        password.setHorizontalAlignment(SwingConstants.RIGHT);
-
-        mPanel.add(name);
-        mPanel.add(JName);
-        mPanel.add(password);
-        mPanel.add(JPassword);
-        mPanel.add(login);
-        mPanel.add(register);
-
+        inputPanel.setLayout(new GridLayout(2,2));
+        inputPanel.add(name);
+        inputPanel.add(nameIn);
+        inputPanel.add(password);
+        inputPanel.add(passwordIn);
         login.addActionListener(this);
         register.addActionListener(this);
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
 
-        this.add(mPanel,BorderLayout.CENTER);   // put the register/login dialog center
+        buttonPanel.add(login);
+        buttonPanel.add(register);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
 
-        this.setTitle("登录");
-        this.pack();
-        this.setLocation(500,300);
+        setLayout(new BorderLayout());
+        getContentPane().add(inputPanel, BorderLayout.NORTH);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+        setTitle("用户");
+        setLocationRelativeTo(inputPanel);
+        setPreferredSize(new Dimension(210, 160));
+        this.setLocation(500, 300);
+        pack();
     }
 
     public Client getmClient() {
@@ -110,10 +112,10 @@ public class Login extends JFrame implements ActionListener {
     }
 
     private boolean attemptLogin() throws Exception {
-        String name = JName.getText();
-        String password = new String(JPassword.getPassword());
+        String name = nameIn.getText();
+        String password = new String(passwordIn.getPassword());
 
-        //用户名或密码格式有误，不能包含 #
+        //用户名或密码格式有误，不能包含 &
         if(!validStringCheck(name) || !validStringCheck(password)) {
             throw new Exception(Onlined.INVALID_VALUE.toString());
         }
@@ -134,8 +136,8 @@ public class Login extends JFrame implements ActionListener {
     }
 
     private boolean attemptRegister() throws Exception {
-        String name = JName.getText();
-        String password = new String(JPassword.getPassword());
+        String name = nameIn.getText();
+        String password = new String(passwordIn.getPassword());
 
         if(!validStringCheck(name) || !validStringCheck(password)) {
             throw new Exception(Onlined.INVALID_VALUE.toString());

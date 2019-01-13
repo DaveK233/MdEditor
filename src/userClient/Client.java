@@ -13,8 +13,8 @@ public class Client {
 
     // network settings args
     private static final String SERVER_IP = "127.0.0.1";    // server ip
-    private static final int SERVER_PORT = 3872;    // server port
-    private static final int CLIENT_PORT = 8080;   // client port
+    private static final int SERVER_PORT = 8081;    // server port
+    private static final int CLIENT_PORT = 8082;   // client port
     private static final int CONNECT_TIMEOUT = 20000;	// connection wait time: 20s
 
     // socket settings
@@ -250,9 +250,8 @@ public class Client {
         }
     }
 
-    private void sendDisconnect(FunType fun) {
-        String request = fun + "&";
-        mPrintWriter.println(request);
+    private void sendDisconnect(FunType fun) throws IOException {
+
     }
 
     //
